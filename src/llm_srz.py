@@ -20,7 +20,7 @@ class NodeLLM:
         self.answer_grader = self.build_answer_grader()
 
     def build_question_router(self):
-        llm = ChatOpenAI(model=self.llm_model, temperature=0)
+        llm = ChatOpenAI(model=self.llm_model, temperature=0.2)
         question_router_prompt = PromptTemplate(
 
             template="""
@@ -42,7 +42,7 @@ class NodeLLM:
 
     def build_answer_normal(self):
         # Normal LLM
-        llm = ChatOpenAI(model=self.llm_model, temperature=0)
+        llm = ChatOpenAI(model=self.llm_model, temperature=0.2)
         prompt = PromptTemplate(
             template="""You are a question-answering system based on your knowledgebase. Respond politely and in a customer-oriented manner.
             If you don't know the answer, refer to the specifics of the question. What exactly is the customer looking for?
@@ -55,7 +55,7 @@ class NodeLLM:
 
     def build_question_rewriter(self):
         # Question Re-writer
-        llm = ChatOpenAI(model=self.llm_model, temperature=0)
+        llm = ChatOpenAI(model=self.llm_model, temperature=0.2)
         question_rewriter_prompt = PromptTemplate(
             template="""You are a question re-writer that converts an input question to a better version optimized for vectorstore retrieval.
             Question: '''{question}'''.
@@ -67,7 +67,7 @@ class NodeLLM:
 
     def build_rag_chain(self):
         # Generation (RAG Prompt)
-        llm = ChatOpenAI(model=self.llm_model, temperature=0)
+        llm = ChatOpenAI(model=self.llm_model, temperature=0.2)
         rag_prompt = PromptTemplate(
             template="""
             You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. If you don't know the answer, just say that you don't know. Use three sentences maximum and keep the answer concise.
@@ -86,7 +86,7 @@ class NodeLLM:
 
     def build_retrieval_grader(self):
         # Grading
-        llm = ChatOpenAI(model=self.llm_model, temperature=0)
+        llm = ChatOpenAI(model=self.llm_model, temperature=0.2)
         retrieval_grader_prompt = PromptTemplate(
             template="""You are a grader evaluating the relevance of a retrieved document to a user question.
             Here is the retrieved document:
@@ -104,7 +104,7 @@ class NodeLLM:
         return retrieval_grader
 
     def build_hallucination_grader(self):
-        llm = ChatOpenAI(model=self.llm_model, temperature=0)
+        llm = ChatOpenAI(model=self.llm_model, temperature=0.2)
         hallucination_grader_prompt = PromptTemplate(
             template="""You are a grader assessing whether an answer is grounded in facts of the document. \n
             Here are the documents:
@@ -122,7 +122,7 @@ class NodeLLM:
     
     def build_answer_grader(self):
 
-        llm = ChatOpenAI(model=self.llm_model, temperature=0)
+        llm = ChatOpenAI(model=self.llm_model, temperature=0.2)
         answer_grader_prompt = PromptTemplate(
             template="""You are a grader assessing whether an answer is useful to resolve a question.
             Here is the answer:
