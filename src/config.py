@@ -1,0 +1,1 @@
+ensemble_retriever = utz.initialize_retrievers(doc_splits, embeddings)
