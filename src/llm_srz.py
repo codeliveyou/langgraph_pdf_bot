@@ -35,13 +35,6 @@ class NodeLLM:
 
                 Question to route: '''{question}'''
             """,
-
-            # template="""You are an expert at routing a user question to a vectorstore or normal LLM call.
-            # Use the vectorstore for questions on LLM osram lamps, bulbs, products and specifications.
-            # You do not need to be stringent with the keywords in the question related to these topics.
-            # Otherwise, use normal LLM call. Give a binary choice 'normal_llm' or 'vectorstore' based on the question.
-            # Return the a JSON with a single key 'datasource' and no preamble or explanation.
-            # Question to route: '''{question}'''""",
             input_variables=["question"],
         )
         question_router = question_router_prompt | llm | JsonOutputParser()
